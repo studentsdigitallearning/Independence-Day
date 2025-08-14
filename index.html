@@ -56,16 +56,7 @@
         /* Ad Containers */
         .ad-placeholder { display: flex; justify-content: center; align-items: center; overflow: hidden; margin-top: 1.5rem; }
         
-        /* First Page Banner Ad Styling */
-        #native-ad-firstpage-container {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 320px;
-            height: 50px;
-        }
-
+        #native-ad-firstpage-container { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); width: 320px; height: 50px; }
         #button-banner-container { width: 320px; height: 50px; }
         #native-ad-bottom-container { width: 300px; height: 250px; margin-bottom: 3rem; }
         
@@ -86,7 +77,6 @@
             <button id="revealButton">संदेश देखें &rarr;</button>
         </div>
         
-        <!-- AD LOCATION 1: FIRST PAGE BANNER AD (FIXED) -->
         <div id="native-ad-firstpage-container" class="ad-placeholder">
             <script type="text/javascript">
                 atOptions = {
@@ -109,7 +99,8 @@
         <div class="celebration-content">
             <h1 class="celebration-heading">Happy Independence Day</h1>
             <div class="image-container">
-                <img src="https://i.giphy.com/media/3o7btP3U51A7Y4A4G4/giphy.gif" alt="Happy Independence Day GIF" id="independence-gif">
+                <!-- GIF SOURCE UPDATED HERE -->
+                <img src="independence.gif" alt="Happy Independence Day GIF" id="independence-gif">
             </div>
             <p class="greeting-text" id="greetingMessage">Wishing you a very Happy Independence Day!</p>
             <input type="text" id="nameInput" class="styled-input" placeholder="आपका नाम (Your Name)">
@@ -118,7 +109,6 @@
             <button class="action-button btn-orange" data-action="shayari">🇮🇳 देशभक्ति शायरी 🇮🇳</button>
             <button class="action-button btn-pink" data-action="fighters">✨ स्वतंत्रता सेनानी ✨</button>
             
-            <!-- AD LOCATION 2: CELEBRATION PAGE BANNER AD -->
             <div id="button-banner-container" class="ad-placeholder">
                 <script type="text/javascript">
                     atOptions = {
@@ -134,7 +124,6 @@
 
             <button id="whatsappShare" class="action-button" data-action="whatsapp">Share on WhatsApp</button>
             
-            <!-- AD LOCATION 3: CELEBRATION PAGE BOTTOM AD -->
             <div id="native-ad-bottom-container" class="ad-placeholder">
                 <script async="async" data-cfasync="false" src="//pl27415917.profitableratecpm.com/e89e1743e47322262192751b52b233a5/invoke.js"></script>
                 <div id="container-e89e1743e47322262192751b52b233a5"></div>
@@ -148,7 +137,6 @@
     <div id="interstitial-ad-container">
         <div class="ad-box">
             <div class="close-ad-button" id="closeAdButton">&times;</div>
-            <!-- AD LOCATION 4: POP-UP (INTERSTITIAL) AD -->
              <script type="text/javascript">
                 atOptions = {
                     'key' : 'b9f19228d03d1914363636262a28bb3f',
@@ -162,7 +150,8 @@
         </div>
     </div>
     
-    <audio id="celebrationSound" src="https://cdn.pixabay.com/audio/2022/08/03/audio_b8199b5030.mp3" preload="auto"></audio>
+    <!-- SOUND SOURCE UPDATED HERE -->
+    <audio id="celebrationSound" src="sound.mp3" preload="auto"></audio>
 
     <!-- ============================================= -->
     <!-- ============ JAVASCRIPT LOGIC =============== -->
@@ -255,18 +244,6 @@
             });
 
             function initFireworks() {
-                const canvas = document.getElementById("fireworksCanvas");
-                const ctx = canvas.getContext("2d");
-                let fireworks = [];
-                let particles = [];
-                const setCanvasSize = () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                };
-                setCanvasSize();
-                class Firework { /* ... Firework logic ... */ }
-                class Particle { /* ... Particle logic ... */ }
-                // Omitting the full firework drawing code for brevity, it's unchanged and correct.
                 const e=document.getElementById("fireworksCanvas"),t=e.getContext("2d");let o=[],n=[];const a=()=>{e.width=window.innerWidth,e.height=window.innerHeight};a();class l{constructor(){this.x=Math.random()*e.width,this.y=e.height,this.targetY=Math.random()*e.height/2.5,this.color=`hsl(${360*Math.random()}, 100%, 70%)`,this.speed=3+2*Math.random()}update(){return this.y-=this.speed,this.y<=this.targetY}draw(){t.beginPath(),t.arc(this.x,this.y,3,0,2*Math.PI),t.fillStyle=this.color,t.fill()}}class d{constructor(e,o,n){this.x=e,this.y=o,this.color=n,this.angle=2*Math.random()*Math.PI,this.speed=2+10*Math.random(),this.friction=.96,this.gravity=1.2,this.alpha=1,this.decay=.015+.03*Math.random()}update(){return this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha>this.decay}draw(){t.save(),t.globalAlpha=this.alpha,t.beginPath(),t.arc(this.x,this.y,2.5,0,2*Math.PI),t.fillStyle=this.color,t.fill(),t.restore()}}const s=e=>{const t=["hsl("+(20+40*Math.random())+", 100%, 70%)","#FFFFFF","#6ADF93"];for(let o=0;o<150;o++)n.push(new d(e.x,e.y,t[Math.floor(Math.random()*t.length)]))};(function i(){requestAnimationFrame(i),t.fillStyle="rgba(26, 18, 46, 0.15)",t.fillRect(0,0,e.width,e.height),Math.random()<.05&&o.length<5&&o.push(new l),o=o.filter(e=>{if(e.draw(),e.update())return s(e),!1;return!0}),n=n.filter(e=>(e.draw(),e.update()))})(),window.addEventListener("resize",a)
             }
         });
