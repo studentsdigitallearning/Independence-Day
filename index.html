@@ -24,7 +24,6 @@
         @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         #landing h1 { font-family: 'Baloo 2', cursive; font-size: clamp(2.5rem, 8vw, 4rem); color: white; text-shadow: 3px 3px 5px rgba(0,0,0,0.25); line-height: 1.3; text-wrap: balance; }
         
-        /* Animation for the reveal button */
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 25px var(--glow-pink), 0 0 15px white inset; }
             50% { transform: scale(1.05); box-shadow: 0 0 35px var(--glow-pink), 0 0 20px white inset; }
@@ -43,12 +42,11 @@
             cursor: pointer; 
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
             box-shadow: 0 0 25px var(--glow-pink), 0 0 15px white inset;
-            animation: pulse 2s infinite; /* Added animation */
+            animation: pulse 2s infinite;
         }
 
         #celebration { background-color: var(--dark-bg); visibility: hidden; opacity: 0; z-index: 10; justify-content: flex-start; padding-top: 3rem; }
         
-        /* These CSS rules below are the key for the page transition */
         body.show-celebration #landing { 
             opacity: 0; 
             visibility: hidden; 
@@ -96,22 +94,10 @@
         <div id="native-ad-firstpage-container" class="ad-placeholder">
             <script async="async" data-cfasync="false" src="//pl27415917.profitableratecpm.com/e89e1743e47322262192751b52b233a5/invoke.js"></script>
             <script type="text/javascript">
-                atOptions = {
-                    'key' : 'b9f19228d03d1914363636262a28bb3f',
-                    'format' : 'iframe',
-                    'height' : 250,
-                    'width' : 300,
-                    'params' : {}
-                };
+                atOptions = { 'key' : 'b9f19228d03d1914363636262a28bb3f', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
             </script>
             <script type="text/javascript">
-                atOptions = {
-                    'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
             </script>
             <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
         </div>
@@ -127,8 +113,10 @@
         <div class="celebration-content">
             <h1 class="celebration-heading">Happy Independence Day</h1>
             <div class="image-container">
-                <!-- Using a working GIF URL -->
-                <img src="https://i.giphy.com/media/3oFzmesgYvvE3mjM9a/giphy.webp" alt="Happy Independence Day GIF" id="independence-gif">
+                <!-- ============================================= -->
+                <!-- FIXED: Using a public URL for the GIF -->
+                <img src="https://media.giphy.com/media/26gJAmg5O2l3z2f4s/giphy.gif" alt="Indian Flag Waving GIF" id="independence-gif">
+                <!-- ============================================= -->
             </div>
             <p class="greeting-text" id="greetingMessage">Wishing you a very Happy Independence Day!</p>
             <input type="text" id="nameInput" class="styled-input" placeholder="आपका नाम (Your Name)">
@@ -139,13 +127,7 @@
             
             <div id="button-banner-container" class="ad-placeholder">
                 <script type="text/javascript">
-                    atOptions = {
-                        'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
+                    atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
                 </script>
                 <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
             </div>
@@ -162,21 +144,17 @@
     <div id="interstitial-ad-container">
         <div class="ad-box">
             <script type="text/javascript">
-                atOptions = {
-                    'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
             </script>
             <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
             <div class="close-ad-button" id="closeAdButton">&times;</div>
         </div>
     </div>
     
-    <!-- Using a working Audio URL -->
-    <audio id="celebrationSound" src="https://cdn.pixabay.com/audio/2022/08/03/audio_b8199b5030.mp3" preload="auto"></audio>
+    <!-- ============================================= -->
+    <!-- FIXED: Using a public URL for the audio file -->
+    <audio id="celebrationSound" src="https://cdn.pixabay.com/audio/2022/01/24/audio_332a63273c.mp3" preload="auto"></audio>
+    <!-- ============================================= -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -198,25 +176,19 @@
             const initialSenderName = urlParams.get('from');
             const initialSenderMsg = urlParams.get('msg');
             
-            // --- THIS IS THE CORRECTED PART ---
             revealButton.addEventListener('click', () => {
-                // Add the class to the body to trigger the CSS transition
                 body.classList.add('show-celebration');
-
-                // Play sound and start fireworks
                 celebrationSound.play().catch(e => console.log("Audio play requires user interaction."));
                 if (!fireworksInitialized) { 
                     initFireworks(); 
                     fireworksInitialized = true; 
                 }
 
-                // Set the greeting message based on whether the link was shared
                 if (initialSenderName) {
                     greetingMessage.textContent = `${initialSenderName} की तरफ से आपको स्वतंत्रता दिवस की बहुत सारी बधाई!`;
                     if (initialSenderMsg) {
                         messageInput.value = initialSenderMsg;
                     }
-                    // This fulfills the requirement: the name field is empty for the new user
                     nameInput.value = ''; 
                 } else {
                     greetingMessage.textContent = 'आपको स्वतंत्रता दिवस की बहुत सारी बधाई!';
@@ -268,7 +240,6 @@
             });
 
             function initFireworks() {
-                // Original minified fireworks code to avoid introducing errors
                 const e=document.getElementById("fireworksCanvas"),t=e.getContext("2d");let o=[],n=[];const a=()=>{e.width=window.innerWidth,e.height=window.innerHeight};a();class l{constructor(){this.x=Math.random()*e.width,this.y=e.height,this.targetY=Math.random()*e.height/2.5,this.color=`hsl(${360*Math.random()}, 100%, 70%)`,this.speed=3+2*Math.random()}update(){return this.y-=this.speed,this.y<=this.targetY}draw(){t.beginPath(),t.arc(this.x,this.y,3,0,2*Math.PI),t.fillStyle=this.color,t.fill()}}class d{constructor(e,o,n){this.x=e,this.y=o,this.color=n,this.angle=2*Math.random()*Math.PI,this.speed=2+10*Math.random(),this.friction=.96,this.gravity=1.2,this.alpha=1,this.decay=.015+.03*Math.random()}update(){return this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha>this.decay}draw(){t.save(),t.globalAlpha=this.alpha,t.beginPath(),t.arc(this.x,this.y,2.5,0,2*Math.PI),t.fillStyle=this.color,t.fill(),t.restore()}}const s=e=>{const t=["hsl("+(20+40*Math.random())+", 100%, 70%)","#FFFFFF","#6ADF93"];for(let o=0;o<150;o++)n.push(new d(e.x,e.y,t[Math.floor(Math.random()*t.length)]))};(function i(){requestAnimationFrame(i),t.fillStyle="rgba(26, 18, 46, 0.15)",t.fillRect(0,0,e.width,e.height),Math.random()<.05&&o.length<5&&o.push(new l),o=o.filter(e=>{if(e.draw(),e.update())return s(e),!1;return!0}),n=n.filter(e=>(e.draw(),e.update()))})(),window.addEventListener("resize",a)
             }
         });
