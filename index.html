@@ -29,36 +29,14 @@
             50% { transform: scale(1.05); box-shadow: 0 0 35px var(--glow-pink), 0 0 20px white inset; }
             100% { transform: scale(1); box-shadow: 0 0 25px var(--glow-pink), 0 0 15px white inset; }
         }
-        #revealButton { 
-            font-family: 'Poppins', sans-serif; 
-            font-weight: 600; 
-            background: white; 
-            color: #333; 
-            border: 3px solid white; 
-            padding: 0.8rem 2.5rem; 
-            margin-top: 2rem; 
-            font-size: 1.2rem; 
-            border-radius: 50px; 
-            cursor: pointer; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            box-shadow: 0 0 25px var(--glow-pink), 0 0 15px white inset;
-            animation: pulse 2s infinite;
-        }
+        #revealButton { font-family: 'Poppins', sans-serif; font-weight: 600; background: white; color: #333; border: 3px solid white; padding: 0.8rem 2.5rem; margin-top: 2rem; font-size: 1.2rem; border-radius: 50px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 25px var(--glow-pink), 0 0 15px white inset; animation: pulse 2s infinite; }
 
         #celebration { background-color: var(--dark-bg); visibility: hidden; opacity: 0; z-index: 10; justify-content: flex-start; padding-top: 3rem; }
-        
-        body.show-celebration #landing { 
-            opacity: 0; 
-            visibility: hidden; 
-        }
-        body.show-celebration #celebration { 
-            opacity: 1; 
-            visibility: visible; 
-        }
-
-        #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        body.show-celebration #landing { opacity: 0; visibility: hidden; }
+        body.show-celebration #celebration { opacity: 1; visibility: visible; }
+        #fireworksCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .celebration-content { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .deco-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
+        .deco-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; pointer-events: none; }
         .deco { position: absolute; font-size: 2rem; animation: float 20s infinite ease-in-out; opacity: 0.7; }
         .deco.d1 { top: 10%; left: 10%; animation-delay: 0s; } .deco.d2 { top: 20%; right: 15%; animation-delay: -5s; font-size: 1.5rem; } .deco.d3 { bottom: 15%; left: 20%; animation-delay: -10s; } .deco.d4 { bottom: 10%; right: 10%; animation-delay: -15s; font-size: 2.5rem; } .deco.d5 { top: 40%; left: 30%; animation-delay: -8s; } .deco.d6 { top: 60%; right: 40%; animation-delay: -12s; }
         @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-25px) rotate(180deg); opacity: 1; } 100% { transform: translateY(0px) rotate(360deg); } }
@@ -74,8 +52,10 @@
         .btn-orange { background: linear-gradient(45deg, #fca311, #e85d04); box-shadow: 0 0 20px #fca311; }
         #whatsappShare { background: linear-gradient(45deg, #25D366, #128C7E); box-shadow: 0 0 20px #25D366; }
         
-        .ad-placeholder { background-color: rgba(255,255,255,0.1); border: 2px dashed var(--glow-cyan); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--glow-cyan); font-size: 0.9rem; text-shadow: none; }
-        #button-banner-container, #native-ad-bottom-container, #native-ad-firstpage-container { text-align: center; margin: 1.5rem auto; }
+        .ad-placeholder { background-color: rgba(255,255,255,0.1); border: 2px dashed var(--glow-cyan); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--glow-cyan); font-size: 0.9rem; text-shadow: none; overflow: hidden; }
+        #button-banner-container { width: 320px; height: 50px; margin-top: 1.5rem; }
+        #native-ad-bottom-container { width: 300px; height: 250px; padding: 0; margin: 2rem auto 3rem; }
+        #native-ad-firstpage-container { width: 300px; height: 250px; padding: 0; margin-top: 2rem; position: absolute; bottom: 2rem; }
         #interstitial-ad-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 100; display: none; justify-content: center; align-items: center; }
         .ad-box { position: relative; width: 300px; height: 250px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; color: #333; }
         .close-ad-button { position: absolute; top: -15px; right: -15px; width: 30px; height: 30px; background-color: white; color: black; border-radius: 50%; border: 2px solid black; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; }
@@ -88,18 +68,18 @@
             <h1>✨ स्वतंत्रता दिवस का एक विशेष संदेश आपके इंतज़ार में है ✨</h1>
             <button id="revealButton">संदेश देखें &rarr;</button>
         </div>
+        
         <div id="native-ad-firstpage-container" class="ad-placeholder">
-            <!-- Ad code here -->
-<script type="text/javascript">
-	atOptions = {
-		'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'b9f19228d03d1914363636262a28bb3f',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/b9f19228d03d1914363636262a28bb3f/invoke.js"></script>
         </div>
     </section>
 
@@ -113,10 +93,7 @@
         <div class="celebration-content">
             <h1 class="celebration-heading">Happy Independence Day</h1>
             <div class="image-container">
-                <!-- ============================================= -->
-                <!-- FIXED: Using your local file name -->
-                <img src="independence.gif" alt="Happy Independence Day GIF" id="independence-gif">
-                <!-- ============================================= -->
+                <img src="https://i.giphy.com/media/3o7btP3U51A7Y4A4G4/giphy.gif" alt="Happy Independence Day GIF" id="independence-gif">
             </div>
             <p class="greeting-text" id="greetingMessage">Wishing you a very Happy Independence Day!</p>
             <input type="text" id="nameInput" class="styled-input" placeholder="आपका नाम (Your Name)">
@@ -126,53 +103,47 @@
             <button class="action-button btn-pink" data-action="fighters">✨ स्वतंत्रता सेनानी ✨</button>
             
             <div id="button-banner-container" class="ad-placeholder">
-                 <!-- Ad code here -->
-<script type="text/javascript">
-	atOptions = {
-		'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
             </div>
 
             <button id="whatsappShare" class="action-button" data-action="whatsapp">Share on WhatsApp</button>
             
             <div id="native-ad-bottom-container" class="ad-placeholder">
-                 <!-- Ad code here -->
-<script type="text/javascript">
-	atOptions = {
-		'key' : '0082c3f18a0f7d36e1760d6d23906fdf',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+                <script async="async" data-cfasync="false" src="//pl27415917.profitableratecpm.com/e89e1743e47322262192751b52b233a5/invoke.js"></script>
+                <div id="container-e89e1743e47322262192751b52b233a5"></div>
             </div>
         </div>
     </section>
     
     <div id="interstitial-ad-container">
         <div class="ad-box">
-             <!-- Ad code here -->
-
+            <!-- Interstitial Ad. You can reuse a banner ad script here or a larger format one -->
+             <script type="text/javascript">
+                atOptions = {
+                    'key' : 'b9f19228d03d1914363636262a28bb3f',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/b9f19228d03d1914363636262a28bb3f/invoke.js"></script>
             <div class="close-ad-button" id="closeAdButton">&times;</div>
         </div>
     </div>
     
-    <!-- ============================================= -->
-    <!-- FIXED: Using your local file name -->
-    <audio id="celebrationSound" src="sound.mp3" preload="auto"></audio>
-    <!-- ============================================= -->
+    <audio id="celebrationSound" src="https://cdn.pixabay.com/audio/2022/08/03/audio_b8199b5030.mp3" preload="auto"></audio>
 
     <script>
-        // The Javascript code is correct and does not need changes.
-        // It will work once the file paths are correct.
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const revealButton = document.getElementById('revealButton');
@@ -192,14 +163,16 @@
             const initialSenderName = urlParams.get('from');
             const initialSenderMsg = urlParams.get('msg');
             
-            revealButton.addEventListener('click', () => {
+            const showCelebrationPage = () => {
                 body.classList.add('show-celebration');
                 celebrationSound.play().catch(e => console.log("Audio play requires user interaction."));
                 if (!fireworksInitialized) { 
                     initFireworks(); 
                     fireworksInitialized = true; 
                 }
-
+            };
+            
+            revealButton.addEventListener('click', () => {
                 if (initialSenderName) {
                     greetingMessage.textContent = `${initialSenderName} की तरफ से आपको स्वतंत्रता दिवस की बहुत सारी बधाई!`;
                     if (initialSenderMsg) {
@@ -209,6 +182,7 @@
                 } else {
                     greetingMessage.textContent = 'आपको स्वतंत्रता दिवस की बहुत सारी बधाई!';
                 }
+                showCelebrationPage();
             });
             
             const showInterstitialAd = (callback) => {
@@ -234,6 +208,7 @@
                     const params = new URLSearchParams();
                     if (name) params.set('from', name);
                     if (message !== "Happy Independence Day!") params.set('msg', message);
+                    
                     const shareableLink = `${baseUrl}?${params.toString()}`;
                     const whatsappText = `🇮🇳 *${name || 'किसी दोस्त'} ने आपको स्वतंत्रता दिवस की शुभकामनाएं भेजी हैं!* 🇮🇳\n\nविशेष संदेश देखने के लिए लिंक पर क्लिक करें:\n\n${shareableLink}`;
                     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
@@ -256,9 +231,91 @@
             });
 
             function initFireworks() {
-                const e=document.getElementById("fireworksCanvas"),t=e.getContext("2d");let o=[],n=[];const a=()=>{e.width=window.innerWidth,e.height=window.innerHeight};a();class l{constructor(){this.x=Math.random()*e.width,this.y=e.height,this.targetY=Math.random()*e.height/2.5,this.color=`hsl(${360*Math.random()}, 100%, 70%)`,this.speed=3+2*Math.random()}update(){return this.y-=this.speed,this.y<=this.targetY}draw(){t.beginPath(),t.arc(this.x,this.y,3,0,2*Math.PI),t.fillStyle=this.color,t.fill()}}class d{constructor(e,o,n){this.x=e,this.y=o,this.color=n,this.angle=2*Math.random()*Math.PI,this.speed=2+10*Math.random(),this.friction=.96,this.gravity=1.2,this.alpha=1,this.decay=.015+.03*Math.random()}update(){return this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha>this.decay}draw(){t.save(),t.globalAlpha=this.alpha,t.beginPath(),t.arc(this.x,this.y,2.5,0,2*Math.PI),t.fillStyle=this.color,t.fill(),t.restore()}}const s=e=>{const t=["hsl("+(20+40*Math.random())+", 100%, 70%)","#FFFFFF","#6ADF93"];for(let o=0;o<150;o++)n.push(new d(e.x,e.y,t[Math.floor(Math.random()*t.length)]))};(function i(){requestAnimationFrame(i),t.fillStyle="rgba(26, 18, 46, 0.15)",t.fillRect(0,0,e.width,e.height),Math.random()<.05&&o.length<5&&o.push(new l),o=o.filter(e=>{if(e.draw(),e.update())return s(e),!1;return!0}),n=n.filter(e=>(e.draw(),e.update()))})(),window.addEventListener("resize",a)
+                const canvas = document.getElementById("fireworksCanvas");
+                const ctx = canvas.getContext("2d");
+                let fireworks = [];
+                let particles = [];
+                const setCanvasSize = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                };
+                setCanvasSize();
+                class Firework {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = canvas.height;
+                        this.targetY = Math.random() * (canvas.height / 2.5);
+                        this.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                        this.speed = Math.random() * 2 + 3;
+                    }
+                    update() {
+                        this.y -= this.speed;
+                        return this.y <= this.targetY;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                    }
+                }
+                class Particle {
+                    constructor(x, y, color) {
+                        this.x = x;
+                        this.y = y;
+                        this.color = color;
+                        this.angle = Math.random() * Math.PI * 2;
+                        this.speed = Math.random() * 10 + 2;
+                        this.friction = 0.96;
+                        this.gravity = 1.2;
+                        this.alpha = 1;
+                        this.decay = Math.random() * 0.015 + 0.015;
+                    }
+                    update() {
+                        this.speed *= this.friction;
+                        this.x += Math.cos(this.angle) * this.speed;
+                        this.y += Math.sin(this.angle) * this.speed + this.gravity;
+                        this.alpha -= this.decay;
+                        return this.alpha > this.decay;
+                    }
+                    draw() {
+                        ctx.save();
+                        ctx.globalAlpha = this.alpha;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }
+                const createParticles = (firework) => {
+                    const particleColors = [`hsl(${Math.random() * 20 + 20}, 100%, 70%)`, "#FFFFFF", "#6ADF93"];
+                    for (let i = 0; i < 150; i++) {
+                        particles.push(new Particle(firework.x, firework.y, particleColors[Math.floor(Math.random() * particleColors.length)]));
+                    }
+                };
+                function loop() {
+                    requestAnimationFrame(loop);
+                    ctx.fillStyle = "rgba(26, 18, 46, 0.15)";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    if (Math.random() < 0.05 && fireworks.length < 5) {
+                        fireworks.push(new Firework());
+                    }
+                    fireworks = fireworks.filter((fw) => {
+                        fw.draw();
+                        if (fw.update()) {
+                            createParticles(fw);
+                            return false;
+                        }
+                        return true;
+                    });
+                    particles = particles.filter((p) => p.draw() && p.update());
+                }
+                loop();
+                window.addEventListener("resize", setCanvasSize);
             }
         });
     </script>
+    
 </body>
 </html>
