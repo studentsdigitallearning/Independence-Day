@@ -163,12 +163,18 @@
 
             let fireworksInitialized = false;
             let afterAdCallback = null;
+            let sharedName = null;
+            let sharedMsg = null;
 
-            // URL से भेजने वाले का नाम और संदेश पढ़ें
+            const updateGreeting = (name, msg) => {
+                greetingMessage.textContent = name ? `${name} की तरफ से आपको स्वतंत्रता दिवस की बहुत सारी बधाई!` : 'आपको स्वतंत्रता दिवस की बहुत सारी बधाई!';
+                if (msg) { messageInput.value = msg; }
+            };
+            
             const urlParams = new URLSearchParams(window.location.search);
-            const senderName = urlParams.get('from');
-            const senderMsg = urlParams.get('msg');
-
+            sharedName = urlParams.get('from');
+            sharedMsg = urlParams.get('msg');
+            
             const showCelebrationPage = () => {
                 body.classList.add('show-celebration');
                 celebrationSound.play().catch(e => console.log("Audio play needs user interaction."));
@@ -176,40 +182,11 @@
             };
             
             revealButton.addEventListener('click', () => {
-                // ***मुख्य बदलाव: इनपुट बॉक्स को रीसेट करें***
-                nameInput.value = '';
-                messageInput.value = '';
-
-                // URL पैरामीटर के आधार पर शुभकामना संदेश सेट करें
-                if (senderName) {
-                    greetingMessage.textContent = `${senderName} की तरफ से आपको स्वतंत्रता दिवस की बहुत सारी बधाई!`;
-                    // यदि कोई कस्टम संदेश है, तो उसे अलग से दिखाएं
-                    if (senderMsg && !document.getElementById('senderMessage')) {
-                        const senderMsgElement = document.createElement('p');
-                        senderMsgElement.id = 'senderMessage';
-                        senderMsgElement.textContent = `उनका संदेश: "${senderMsg}"`;
-                        senderMsgElement.style.cssText = "font-style: italic; color: var(--white-ish); margin-top: -1rem; margin-bottom: 1.5rem; font-size: clamp(0.9rem, 3vw, 1.1rem); text-wrap: balance;";
-                        greetingMessage.after(senderMsgElement);
-                    }
-                } else {
-                    // यदि कोई साझा लिंक नहीं है, तो डिफ़ॉल्ट संदेश दिखाएं
-                    greetingMessage.textContent = 'आपको स्वतंत्रता दिवस की बहुत सारी बधाई!';
-                }
-                
+                if (sharedName) { nameInput.value = sharedName; updateGreeting(sharedName, sharedMsg); }
                 showCelebrationPage();
             });
             
-            // यह इवेंट अब केवल सीधे विज़िटर के लिए ग्रीटिंग अपडेट करता है
-            nameInput.addEventListener('input', () => {
-                if (!senderName) { // केवल तभी अपडेट करें जब यह साझा लिंक न हो
-                    const currentUserName = nameInput.value.trim();
-                    if (currentUserName) {
-                        greetingMessage.textContent = `${currentUserName} की तरफ से आपको स्वतंत्रता दिवस की बहुत सारी बधाई!`;
-                    } else {
-                        greetingMessage.textContent = 'आपको स्वतंत्रता दिवस की बहुत सारी बधाई!';
-                    }
-                }
-            });
+            nameInput.addEventListener('input', () => { if (!sharedName) { updateGreeting(nameInput.value.trim(), null); } });
 
             const showInterstitialAd = (callback) => {
                 afterAdCallback = callback;
@@ -226,16 +203,14 @@
 
             const performAction = (action) => {
                 if (action === 'whatsapp') {
-                    // हमेशा इनपुट बॉक्स से नया नाम और संदेश पढ़ें
                     const name = nameInput.value.trim() || "";
-                    const message = messageInput.value.trim() || "";
+                    const message = messageInput.value.trim() || "Happy Independence Day!";
                     const baseUrl = window.location.origin + window.location.pathname;
                     const params = new URLSearchParams();
                     if (name) params.set('from', name);
-                    if (message) params.set('msg', message);
+                    if (message !== "Happy Independence Day!") params.set('msg', message);
                     const shareableLink = `${baseUrl}?${params.toString()}`;
-                    // बेहतर और हिंदी-प्रथम शेयर टेक्स्ट
-                    const whatsappText = `🇮🇳 *${name || 'एक मित्र'} ने आपको स्वतंत्रता दिवस की शुभकामनाएं भेजी हैं!* 🇮🇳\n\nविशेष संदेश देखने के लिए लिंक पर क्लिक करें:\n\n${shareableLink}`;
+                    const whatsappText = `🇮🇳 *${name || 'A friend'} has sent you an Independence Day Greeting!* 🇮🇳\n\nClick the link to see the special message:\n\n${shareableLink}`;
                     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
                     window.open(whatsappUrl, '_blank');
                 } else if (action === 'shayari') {
@@ -254,7 +229,7 @@
             });
 
             function initFireworks() {
-                // आतिशबाजी का कोड सही है और अपरिवर्तित है
+                // Fireworks code is correct and unchanged
                 const e=document.getElementById("fireworksCanvas"),t=e.getContext("2d");let o=[],n=[];const a=()=>{e.width=window.innerWidth,e.height=window.innerHeight};a();class l{constructor(){this.x=Math.random()*e.width,this.y=e.height,this.targetY=Math.random()*e.height/2.5,this.color=`hsl(${360*Math.random()}, 100%, 70%)`,this.speed=3+2*Math.random()}update(){return this.y-=this.speed,this.y<=this.targetY}draw(){t.beginPath(),t.arc(this.x,this.y,3,0,2*Math.PI),t.fillStyle=this.color,t.fill()}}class d{constructor(e,o,n){this.x=e,this.y=o,this.color=n,this.angle=2*Math.random()*Math.PI,this.speed=2+10*Math.random(),this.friction=.96,this.gravity=1.2,this.alpha=1,this.decay=.015+.03*Math.random()}update(){return this.speed*=this.friction,this.x+=Math.cos(this.angle)*this.speed,this.y+=Math.sin(this.angle)*this.speed+this.gravity,this.alpha-=this.decay,this.alpha>this.decay}draw(){t.save(),t.globalAlpha=this.alpha,t.beginPath(),t.arc(this.x,this.y,2.5,0,2*Math.PI),t.fillStyle=this.color,t.fill(),t.restore()}}const s=e=>{const t=["hsl("+(20+40*Math.random())+", 100%, 70%)","#FFFFFF","#6ADF93"];for(let o=0;o<150;o++)n.push(new d(e.x,e.y,t[Math.floor(Math.random()*t.length)]))};(function i(){requestAnimationFrame(i),t.fillStyle="rgba(26, 18, 46, 0.15)",t.fillRect(0,0,e.width,e.height),Math.random()<.05&&o.length<5&&o.push(new l),o=o.filter(e=>{if(e.draw(),e.update())return s(e),!1;return!0}),n=n.filter(e=>(e.draw(),e.update()))})(),window.addEventListener("resize",a)
             }
         });
