@@ -74,11 +74,8 @@
         .btn-orange { background: linear-gradient(45deg, #fca311, #e85d04); box-shadow: 0 0 20px #fca311; }
         #whatsappShare { background: linear-gradient(45deg, #25D366, #128C7E); box-shadow: 0 0 20px #25D366; }
         
-        /* Ad Styles */
         .ad-placeholder { background-color: rgba(255,255,255,0.1); border: 2px dashed var(--glow-cyan); border-radius: 8px; display: flex; justify-content: center; align-items: center; color: var(--glow-cyan); font-size: 0.9rem; text-shadow: none; }
-        #button-banner-container { width: 100%; max-width: 320px; height: 50px; margin-top: 1.5rem; }
-        #native-ad-bottom-container { width: 100%; max-width: 400px; padding: 1rem; margin: 2rem auto 3rem; }
-        #native-ad-firstpage-container { width: 100%; max-width: 400px; padding: 1rem; margin-top: 2rem; position: absolute; bottom: 2rem; }
+        #button-banner-container, #native-ad-bottom-container, #native-ad-firstpage-container { text-align: center; margin: 1.5rem auto; }
         #interstitial-ad-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); z-index: 100; display: none; justify-content: center; align-items: center; }
         .ad-box { position: relative; width: 300px; height: 250px; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; color: #333; }
         .close-ad-button { position: absolute; top: -15px; right: -15px; width: 30px; height: 30px; background-color: white; color: black; border-radius: 50%; border: 2px solid black; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; }
@@ -92,14 +89,7 @@
             <button id="revealButton">संदेश देखें &rarr;</button>
         </div>
         <div id="native-ad-firstpage-container" class="ad-placeholder">
-            <script async="async" data-cfasync="false" src="//pl27415917.profitableratecpm.com/e89e1743e47322262192751b52b233a5/invoke.js"></script>
-            <script type="text/javascript">
-                atOptions = { 'key' : 'b9f19228d03d1914363636262a28bb3f', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-            </script>
-            <script type="text/javascript">
-                atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+            <!-- Ad code here -->
         </div>
     </section>
 
@@ -114,8 +104,8 @@
             <h1 class="celebration-heading">Happy Independence Day</h1>
             <div class="image-container">
                 <!-- ============================================= -->
-                <!-- FIXED: Using a public URL for the GIF -->
-                <img src="https://media.giphy.com/media/26gJAmg5O2l3z2f4s/giphy.gif" alt="Indian Flag Waving GIF" id="independence-gif">
+                <!-- FIXED: Using your local file name -->
+                <img src="independence.gif" alt="Happy Independence Day GIF" id="independence-gif">
                 <!-- ============================================= -->
             </div>
             <p class="greeting-text" id="greetingMessage">Wishing you a very Happy Independence Day!</p>
@@ -126,37 +116,32 @@
             <button class="action-button btn-pink" data-action="fighters">✨ स्वतंत्रता सेनानी ✨</button>
             
             <div id="button-banner-container" class="ad-placeholder">
-                <script type="text/javascript">
-                    atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-                </script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+                 <!-- Ad code here -->
             </div>
 
             <button id="whatsappShare" class="action-button" data-action="whatsapp">Share on WhatsApp</button>
             
             <div id="native-ad-bottom-container" class="ad-placeholder">
-                <script async="async" data-cfasync="false" src="//pl27415917.profitableratecpm.com/e89e1743e47322262192751b52b233a5/invoke.js"></script>
-                <div id="container-e89e1743e47322262192751b52b233a5"></div>
+                 <!-- Ad code here -->
             </div>
         </div>
     </section>
     
     <div id="interstitial-ad-container">
         <div class="ad-box">
-            <script type="text/javascript">
-                atOptions = { 'key' : '0082c3f18a0f7d36e1760d6d23906fdf', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/0082c3f18a0f7d36e1760d6d23906fdf/invoke.js"></script>
+             <!-- Ad code here -->
             <div class="close-ad-button" id="closeAdButton">&times;</div>
         </div>
     </div>
     
     <!-- ============================================= -->
-    <!-- FIXED: Using a public URL for the audio file -->
-    <audio id="celebrationSound" src="https://cdn.pixabay.com/audio/2022/01/24/audio_332a63273c.mp3" preload="auto"></audio>
+    <!-- FIXED: Using your local file name -->
+    <audio id="celebrationSound" src="sound.mp3" preload="auto"></audio>
     <!-- ============================================= -->
 
     <script>
+        // The Javascript code is correct and does not need changes.
+        // It will work once the file paths are correct.
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
             const revealButton = document.getElementById('revealButton');
